@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Public profile pages for Members in Umbraco 8 – By Nik Rimington</title>
+
+    <meta name="description" content="Public profile pages for Members in Umbraco 8">
+    <meta name="author" content="Nik Rimington">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/common/reset.css">
+    <link rel="stylesheet" href="/common/reveal.css">
+    <link rel="stylesheet" href="/common/theme/spindogs.css" id="theme">
+    <link rel="stylesheet" href="/common/plugin/highlight/monokai.css">
+    <style>
+        .text-slate {
+            color: #2d2d2d;
+        }
+        .text-spindogsRed {
+            color: #E4192F;
+        }
+        .two-column{
+            display: flex;            
+        }
+        .col{
+            flex: 1;
+        }
+    </style>
+
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>    
+    <div class="reveal cloak">
+        <div class="slides">
+            <section data-background-color="#E4192F">               
+                <img src="assets/Spidnogs_White.svg" style="width: 250px; margin-bottom: 50px;"/>
+                <h1> Public profile pages<br/> for Members</h1>
+                <span class="text-large" style="margin-top: 40px;"> by <span class="text-slate">Nik Rimington</span></span>
+            </section>
+            <section>
+                <section>
+                    <div class="two-column">
+                        <div class="col">
+                            <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                            <h2 class="text-spindogsRed">About me</h2>
+                            <p>A few quick facts:</p>
+                            <ul>
+                                <li class="fragment">Senior .Net Developer @ <span class="text-spindogsRed"><strong>Spindogs</strong></span></li>
+                                <li class="fragment">Using Umbraco since 2015</li>
+                                <li class="fragment">Contributed to Core and Docs</li>
+                                <li class="fragment">3x MVP</li>
+                                <li class="fragment">Umbraco Packages Team</li>  
+                                <li class="fragment">Dark Theme user</li>
+                                <li class="fragment">First presentation powered by RevealJs</li>           
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <img src="https://www.spindogs.co.uk/g_images/large/2019-05-16-16-01-05-nikolas-rimington-935-1-image1.jpg" alt="Portrait of Nik"/>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Before we get started, let me introduce myself<br/>
+                        Work as a Senior .Net Developer at Spindogs - Cardiff based Web agency and Umbraco gold partner. <br/>
+                        My Umbraco journey started back in 2015 at a different Cardiff agency but it was the Community that got me to stick with it. <br/>
+                        Since then my involvement with Umbraco has grown - Contributed code to the core and to the docs
+                        - awarded MVP 3 times
+                        Joined the Umbraco Packages team.
+
+                        <br/>
+                        On a side note, I'm an avid dark theme user where ever I can, and this is my first presentation powered by RevealJs                        
+                    </aside>
+                </section>
+                <section>
+                    <div class="two-column">
+                        <div class="col">
+                            <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                            <h2 class="text-spindogsRed">Where to find me?</h2>
+                            <ul class="fragment">
+                                <li>Blog: <strong>www.justnik.me</strong></li>
+                                <li>Twitter: <strong>@HotChilliCode</strong></li>
+                                <li>Umbraco Slack: <strong>@nik</strong></li>
+                                <li>Facebook: <strong>Umbraco Web Developers group</strong></li>      
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <img src="https://www.spindogs.co.uk/g_images/large/2019-05-16-16-01-05-nikolas-rimington-935-1-image1.jpg" alt="Portrait of Nik"/>
+                        </div>                        
+                    </div>
+                    <aside class="notes">
+                        My "inbox" is always open, you can read my blogs at JustNik.me, or reach out on any of these platforms. Questions are always welcome.<br/>
+                        <br/>
+                        Right, let's get on with the real talk.
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">Public profile pages</h2>
+                    <p>My site has members and I want them to have profile pages!</p>
+                    <p class="fragment">What are my options?</p>
+                    <aside class="notes">
+                        Quick bit of background <br />
+                        <ul>
+                            <li>New build project</li>
+                            <li>Use Umbracos member for registration/authentication</li>
+                            <li>Plot twist - Profile pages - New to me!</li>
+                            <li>Why? Building a community - directory listing, member driven content</li>
+                        </ul>
+                        As I say, I'd never done this before so the research began:
+                        
+                        <strong>Trigger fragment.</strong>
+
+                        As you may imagine, there are various different approaches that can be taken to achieve this.
+                        <br/><strong>3</strong> that I considered.
+
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">Option 1: Content nodes</h2>
+                    <div class="fragment">
+                        <p>🤮🤮🤮</p>
+                        <p> Let's not do this</p>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                        <li>The first option is to create a content node per member when they are registering.</li>
+                        <li>These could sit in the content tree, and be easily editable.</li>
+                        <li>This is not a good idea, this site is expected to have 1000's of users, all of which would be updating their profiles (all be it not neccessairly regularly)</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">Option 2: Directory page and query string</h2>
+                    <div class="fragment">
+                        <p> /members?m={MemberKey}</p>
+                        <p>Messy, not easy to remember</p>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                        <li>Option 2 - Have a listing page and user query string parameters to display the correct content</li>
+                        <li>It would work, but it's not nice</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">Option 3: Custom routing &amp; Route Hijacking</h2>
+                    <div class="fragment">
+                        <p> /members/profile-slug</p>
+                        <p>Easier to remember</p>
+                        <p>Nicer to look at</p>
+                        <p>Fun technical challenge</p>
+                    </div>
+                    <div class="fragment">
+                        💪💪💪
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                        <li>Option 3 - Still having a listing page</li>
+                        <li>But let's have nice URLs</li>
+                        <li>Play with Umbraco core concepts - Route Hijacking and Render MVC Controllers</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>  
+            <section>
+                <div class="two-column">
+                    <div class="col">
+                        <img src="assets/puzzle.jpg" alt="puzzlePieces" style="width: 75%"/>
+                        <div class="text-extra-small">Photo by <a href="https://unsplash.com/@melipoole?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mel Poole</a> on <a href="https://unsplash.com/s/photos/jigsaw-puzzle?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></div>
+                    </div>
+                    <div class="col">
+                        <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                        <h2 class="text-spindogsRed">Components</h2>
+                        <p>What do we need?</p>
+                        <ul>
+                            <li class="fragment"><strong class="text-spindogsRed">Strongly typed</strong>  Models</li>
+                            <li class="fragment"><strong class="text-spindogsRed">Unique</strong> Url slug</li>
+                            <li class="fragment">To handle the <strong class="text-spindogsRed">inbound request</strong></li>
+                            <li class="fragment"><strong class="text-spindogsRed">Find</strong> the Member</li>
+                            <li class="fragment">Display with the <strong class="text-spindogsRed">correct</strong> view</li>   
+                            <li class="fragment">Maintain <strong class="text-spindogsRed">Umbraco Context</strong></li>    
+                        </ul>
+                    </div>
+                    
+                </div>
+                <aside class="notes">
+                    No code - lots of planning
+                    <ul>
+                        <li>Break it down</li>
+                        <li>Figure out the underlying requirements</li>
+                        <li>Then think about the technical implementation - some of these bits I've worked with before in different ways</li>
+                    </ul>
+                </aside>
+            </section>  
+            <section data-background-color="#E4192F">               
+                <img src="assets/G_White.svg" style="width: 50px; margin-bottom: 50px;"/>
+                <h2> Got a plan <br/> Let's get started</h2>
+            </section>
+            <section class="strongly-typed-models">               
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">Stongly typed models</h2>
+                    <ul class="fragment">
+                        <li>We've got them!</li>
+                        <li>#UmbracoFTW</li>
+                        <li>🎉🎉 That was easy! 🎉🎉</li>
+                    </ul> 
+                    <aside class="notes">
+                        <ul>
+                            <li>In our situation we are using Umbraco Models Builder - This creates strongly typed models for doc types, but also for media and member types! Wohoo </li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section class="url-slug">                
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Url Slug</h2>
+                    <ul class="fragment">
+                        <li>How is it made up?<div class="fragment text-spindogsRed">First name &amp; Last name properties</div></li>
+                        <li>Must be unique<div class="fragment text-spindogsRed">How do we ensure this?</div></li>
+                        <li>We don't want to have to keep regenerating it! <div class="fragment text-spindogsRed">Stored on a label property</div></li>
+                    </ul> 
+                    <aside class="notes">
+                        <ul>
+                            <li>Again, break it down - Whats important to know?</li>
+                            <li>How are we wanting to construct our URL? - We could use any of our properties on the member, or generate a random slug</li>
+                            <li>But we want it to be friendly, so lets use our members name!</li>
+                            <li>Check it's not already in Use</li>
+                            <li>Make it unique</li>
+                            <li>Don't want to be doing this every time we need the slug so we want to save it</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Url Slug</h2>
+                    <pre><code class="hljs csharp" data-trim>
+                        <script type="text/template">
+                        private void MemberService_Saving(IMemberService sender, 
+                                SaveEventArgs<IMember>; e)
+                        {
+                            //CM is a short namespace for Umbraco.Web.PublishedModels
+                            foreach(var member in e.SavedEntities)
+                            {
+                                if(member.IsPropertyDirty("firstName") || 
+                                    member.IsPropertyDirty("lastName") || 
+                                    string.IsNullOrWhiteSpace(member.GetValue<string>(
+                                            "urlSlug")))
+                                {
+                                    UpdateProfileUrlSlug(member);
+                                }
+                            }
+                        }
+                        </script>
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Step 1. Hook into the Umbraco saving event</li>
+                            <li>Step 2. See if either the first name or the last name is dirty</li>
+                            <li>We only want to go through this process if these have changed, no point otherwise</li>
+                            <li>Step 3. Call the method for updating the Url Slug</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Url Slug</h2>
+                    <div>Inside the UpdateUrlSlug method</div>
+                    <pre><code class="hljs csharp" data-trim>
+                        <script type="text/template">
+                        var firstName = member.GetValue<string>("firstName");
+                        var lastName = member.GetValue<string>("lastName");
+                        var name = string.Join("-", firstName, lastName).ToUrlSegment().ToLower();
+                        member.SetValue("urlSlug", name);
+                        </script>
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Step 1. Read the values for first and last name</li>
+                            <li>Step 2. Assemble our initial slug</li>
+                            <li>Step 3. Use Umbraco ToUrlSegment to clean the string</li>
+                            <li>Step 4. Save this to our member</li>
+                            <li>But wait - Before we save this to our member, we need to make sure this is going to be unique</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Url Slug</h2>
+                    <div>Ensuring Uniqueness</div>
+                    <div class="fragment">
+                        <ul>
+                            <li>Check if the slug has already been used
+                                <div class="fragment text-spindogsRed">
+                                    <div>Umbraco's member service has a very helpful method</div>
+                                    <pre><code class="hljs csharp" data-trim>
+                                        memberService.GetMembersByPropertyValue();
+                                    </code></pre>
+                                </div>
+                            </li>
+                            <li>Generate a new slug based on the current one
+                                <div class="fragment">
+                                    <strong class="text-spindogsRed">dangeasy-naming-uniquename</strong><br/> by Anthony Dang (@AnthonyDotNet) to the rescue
+                                    <pre><code class="hljs csharp" data-trim>
+                                        var uniqueName = NameGenerator.GetUniqueName(memberSlugs, name);
+                                    </code></pre>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>We cannot 100% garantuee that we will catch all duplications, but lets do our best.</li>
+                            <li>2 parts - find if the slug we've generated has already been used</li>
+                            <li>If it has, let's generate a unique one</li>
+                            <li>Member service - GetMembersByPropertyValue - great method that I didn't know existed.
+                                <br/>
+                                Makes querying members much easier, and it allows the use of Umbracos Querying options.
+                                <br/> Specifically, allows us to search for string starting with our term.
+                            </li>
+                            <li>Pondering how to generate uniqueness - recalled Anthony Dang had tweeted something a while back about something similar.</li>
+                            <li>Great repo - not on nuget - that's okay, I needed to customise it a little bit</li>
+                            <li>Search pattern used ()'s to indicate the custom suffix</li>
+                            <li>Replace with - to be more URL friendly</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Url Slug</h2>
+                    <div>Final UpdateProfileSlug Method</div>
+                    <pre><code class="hljs csharp" data-trim>
+                        <script type="text/template">
+private void UpdateProfileUrlSlug(Umbraco.Core.Models.IMember member)
+{
+    var firstName = member.GetValue<string>("firstName");
+    var lastName = member.GetValue<string>("lastName");
+    var name = string.Join("-", firstName, lastName).ToUrlSegment().ToLower();
+    var memberSlugs =
+           memberService.GetMembersByPropertyValue(
+               "urlSlug", 
+                name, 
+                Umbraco.Core.Persistence.Querying.StringPropertyMatchType.StartsWith)
+            .Select(m => 
+                m.GetValue<string>("urlSlug")).ToList();
+
+    var uniqueName = NameGenerator.GetUniqueName(memberSlugs, name);
+    member.SetValue("urlSlug", uniqueName);
+}
+</script>
+                    </code></pre>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>It's not perfect</li>
+                            <li>Always setting the slug - even if not needed</li>
+                            <li>Should probably check the slug to see if it's different to the current one</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section class="inbound-request-part-1">
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Inbound Request : Part 1</h2>
+                    <ul class="fragment">
+                        <li>It's getting tricky now - But Umbraco docs help</li>
+                        <li><a href="https://our.umbraco.com/Documentation/Reference/Routing/custom-routes">https://our.umbraco.com/Documentation/Reference/Routing/custom-routes</a></li>
+                        <li>Example uses a hard coded ID 🚫</li>
+                        <li>Bring on the custom <strong>UmbracoVirtualNodeRouteHandler</strong></li>
+                    </ul> 
+                    <aside class="notes">
+                        <ul>
+                            <li>Umbraco documentation has a great example, and to be honest, 90% of the code I did for this bit is lifted straight from there</li>
+                            <li>But, the example uses a hard coded ID and I'm not a fan of that</li>
+                            <li>My alternative, although not ideal, does something a bit different, but it's still another hard coded value</li>
+                            <li>That's fine as a decision was made that profiles were available on a fixed base path. "/members"</li>
+                        </ul>
+                    </aside>
+                </section>            
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Inbound Request : Part 1</h2>
+                    <div>Custom <strong>UmbracoVirtualNodeRouteHandler</strong></div>
+                    
+                    <div class="fragment">
+                        <pre><code class="hljs csharp" data-trim>
+public class NodeByUrlRouteHandler : UmbracoVirtualNodeRouteHandler
+{
+    private readonly string url;
+
+    public UmbracoVirtualNodeByUrlRoutHandler(string url)
+    {        
+        this.url = url;
+    }
+
+    protected override IPublishedContent FindContent(
+        RequestContext requestContext, UmbracoContext umbracoContext)
+    {
+        return umbracoContext.Content.GetByRoute(url);
+    }
+}
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>Created a custom UmbracoVirtualNodeRouteHandler based off of the example in the docs</li>
+                            <li>Has a URL passed in instead of an ID</li>
+                            <li>We have an UmbracoContext so finding by route is easy, let Umbraco do the hard work!</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Inbound Request : Part 1</h2>
+                    <div>Map the route</div>
+                    
+                    <div class="fragment">
+                        <pre><code class="hljs csharp" data-trim>
+RouteTable.Routes.MapUmbracoRoute("ProfileCustomRoute", "members/{memberAlias}", new
+        {
+            controller = "Members",
+            action = "ProfileView",
+            memberAlias = UrlParameter.Optional
+        }, new NodeByUrlRouteHandler("/members"));
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>Although not shown here, the following code is run in the initialize method of a Component, and so has a corrresponding component</li>
+                            <li>Fixed URL pattern is needed for this approach</li>
+                            <li>Alternative approaches are available</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section class="inbound-request-part-2">
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Inbound Request:  Part 2</h2>
+                    <div>Now it's routed, we need to do something</div>
+                    
+                    <div class="fragment">
+                        <ul>
+                            <li>Models, Controllers, Views, oh my!</li>
+                            <li>The route handler is a bit pushy!</li>
+                            <li>Partial Classes</li>
+                        </ul>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>Okay, so the routing is set up, but it's going nowhere!</li>
+                            <li>Well that's not true... it's trying to go somewhere but that somewhere doesn't exist yet</li>
+                            <li>Our virtual route handler is passing us our Memebers content node! It exists, it's real</li>
+                            <li>RenderMvcController - actions on this accept a contentmodel, which is a wrapped IPublishedContent</li>
+                            <li>Umbraco magic comes into play</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Inbound Request:  Part 2</h2>
+                    <div>The Controller</div>
+                    
+                    <div class="fragment">
+                        <pre><code class="hljs csharp" data-trim>
+                            public class MembersController : RenderMvcController
+                            {      
+                        
+                                public override ActionResult Index(ContentModel model)
+                                {
+                                    return base.Index(model);
+                                }
+                            }
+                        </code></pre>
+                    </div>
+                    <div class="fragment">
+                        Umbraco docs explain RenderMvcController way better than I can.
+                        <a href="https://our.umbraco.com/documentation/Reference/Routing/custom-controllers">https://our.umbraco.com/documentation/Reference/Routing/custom-controllers</a>
+                    </div>
+                    
+                    <aside class="notes">
+                        <ul>
+                            <li>Render MVC Controller - Standard Umbraco controller technique</li>
+                            <li>We don't care about the Index method, so let's remove it</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>                    
+                    <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                    <h2 class="text-spindogsRed">The Inbound Request:  Part 2</h2>
+                    <div>The Action!</div>
+
+                    <div class="fragment">
+                        <pre><code class="hljs csharp" data-trim data-line-numbers="6-7|10-11|14|1-16">
+                            <script type="text/template">
+                            public class MembersController : RenderMvcController
+                            {      
+                                public ActionResult ProfileView(ContentModel model, string memberAlias)
+                                {
+                        
+                                    var members = Services.MemberService.GetMembersByPropertyValue("urlSlug", 
+                                        memberAlias, StringPropertyMatchType.Exact);
+
+                                    if (model.Content is CM.Members membersNode)
+                                        membersNode.MemberProfile = members.Count() != 1 ? null : 
+                                            Members.GetById(members.FirstOrDefault().Id) as CM.Member;
+                                    else
+                                        membersNode = null;
+                                    return View("PublicProfile", membersNode);
+                                }
+                            }
+                        </script>
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ul>                            
+                            <li>Find our member profile and set it against a property on the Members model</li>
+                            <li>Members model is from models builder, but MemberProfle has been added via a partial class</li>
+                            <li>Why, because when rendering in my use case, I want the members node and the member profile, to give context within the current site</li>
+                            
+                        </ul>
+                    </aside>
+                </section>
+
+            </section>
+            <section data-background-color="#E4192F">               
+                <img src="assets/G_White.svg" style="width: 50px; margin-bottom: 50px;"/>
+                <h2> Demo?</h2>
+                <h3>Well, I suppose it's only fair</h3>
+            </section>
+            <section>
+                <img src="assets/G_White.svg" style="opacity: 0.25; height: 30px;" />
+                <h2 class="text-spindogsRed">But...</h2>
+                <p>A few things to note:</p>
+                <ul>
+                    <li>This isn't the only way to do this</li>
+                    <li>This demo is "incomplete"</li>
+                    <li>It's a proof of concept, and personally I think it works pretty well</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>Content finders?</li>
+                        <li>Dynamic lookup for "members node" rather than fixed URL path</li>
+                        <li>What happens if the Member doesn't exist?</li>
+                        <li>Improved checks around Slug saving/updating</li>
+                        <li>Plenty of others I've not even thought of I'm sure</li>
+                        <li>Should changing slugs redirect like Umbraco nodes?</li>
+                    </ul>
+                </aside>
+            </section>
+            <section data-background-color="#E4192F">               
+                <img src="assets/G_White.svg" style="width: 50px; margin-bottom: 50px;"/>
+                <h2> Questions?</h2>
+            </section>
+            <section data-background-color="#E4192F">               
+                <img src="assets/G_White.svg" style="width: 50px; margin-bottom: 50px;"/>
+                <h2> Thanks for Listening</h2>
+            </section>
+        </div>
+    </div>
+
+
+    <script src="/common/reveal.js"></script>
+    <script src="/common/plugin/notes/notes.js"></script>
+    <script src="/common/plugin/markdown/markdown.js"></script>
+    <script src="/common/plugin/highlight/highlight.js"></script>
+
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            controlsTutorial: false,
+            progress: true,
+            history: true,
+            center: true,
+            slideNumber: 'c/t',
+            transitionSpeed: 'fast',
+            transition: 'slide',
+            keyboard: {
+                    27: 'Fullscreen',
+                    38: 'next',
+                    40: 'prev'
+                },
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+
+        if(Reveal.hasPlugin( 'highlight' ))
+        {
+            var highlight = Reveal.getPlugin( 'highlight' );
+            highlight.hljs.registerLanguage("razor", function (b) {
+                var a = "foreach|0 var|0 if|0 in|0 else|0 model|0 using|0 false|0true|0 null|0 int|0 for|0 double|0 decimal|0 float|0 string|0 new|0 helper|0";
+                return { k: a, c: [{ cN: "built_in", b: "Html|Scripts|RenderBody|RenderSection|Styles" }, { cN: "comment", b: "@[*]", e: "[*]@" }, { cN: "start", b: /[@][?\\w]*/, i: /[@][{*]/ }, { cN: "string", b: '"((?!@))', e: '"', i: "\\n" }, { b: "<", e: ">", i: "</?", sL: "xml", c: [{ b: '"@', e: '"', sL: "razor" }] }] }
+                        }
+            );
+        }
+                
+
+    </script>
+
+</body>
+
+</html>
